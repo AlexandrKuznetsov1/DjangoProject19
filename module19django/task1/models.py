@@ -19,4 +19,5 @@ class Game(models.Model):
     age_limited = models.BooleanField(1)
     buyer = models.ManyToManyField(Buyer, related_name='game')
 
-
+    def __str__(self):
+        return self.title
