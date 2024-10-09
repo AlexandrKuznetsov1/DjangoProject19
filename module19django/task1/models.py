@@ -4,7 +4,7 @@ from django.db import models
 # Create your models here.
 class Buyer(models.Model):
     name = models.CharField(max_length=50)
-    balance = models.DecimalField()
+    balance = models.DecimalField(max_digits=8, decimal_places=2)
     age = models.IntegerField()
 
     def __str__(self):
@@ -13,8 +13,8 @@ class Buyer(models.Model):
 
 class Game(models.Model):
     title = models.CharField(max_length=100)
-    cost = models.DecimalField()
-    size = models.DecimalField()
+    cost = models.DecimalField(max_digits=8, decimal_places=2)
+    size = models.DecimalField(max_digits=8, decimal_places=0)
     description = models.TextField()
     age_limited = models.BooleanField(1)
     buyer = models.ManyToManyField(Buyer, related_name='game')
