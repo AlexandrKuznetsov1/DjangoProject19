@@ -1,0 +1,22 @@
+{% extends "menu.html" %}
+
+{% block pagename %}
+    <h1 style="border: 3px red solid; background-color: lightyellow; padding: 10px; text-align: center; color: blue;" >
+        <b> Игры </b></h1>
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    {% for game in Games %}
+        <h3> * {{ game | title }} | {{ game.description | title }}. Cтоимость: {{ game.size | title }}
+            <button> Купить </button> </h3>
+    {% endfor %}
+    <a href="../"><input type="button" value="Вернуться на главную страницу"/></a>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0,
+        minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Регистрация HTML</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{form.as_p}}
+        <label for="name"> Введите логин </label>
+        <input type="text" id="name" name="name" maxlength="30">
+
+        <label for="password"> Введите пароль </label>
+        <input type="password" id="password" name="password" minlength="8">
+
+        <label for="repeat_password"> Повторите пароль </label>
+        <input type="password" id="repeat_password" name="repeat_password" minlength="8">
+
+        <label for="age"> Введите свой возраст </label>
+        <input type="text" id="age" name="age" maxlength="3">
+
+        <label for="subscribe">
+            <input type="checkbox" id="subscribe" name="subscribe">
+            Подписаться на рассылку
+        </label>
+
+        <button type="submit"> Отправить </button>
+    </form>
+</body>
+</html>

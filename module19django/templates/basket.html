@@ -1,0 +1,17 @@
+{% extends "menu.html" %}
+
+{% block pagename %}
+    <h1 style="border: 3px red solid; background-color: lightrad; padding: 10px; text-align: center; color: blue;">
+        <b> Корзина </b></h1>
+{% endblock %}
+
+{% block menu %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 style="border: 15px red double; background-color: yellow; padding: 10px; text-align: center; color: red;">
+        <b> Поход на рыбалку откладывается, сайт в разработке. Извините! </b>
+    <br>
+    <a href="../"><input type="button" value="Вернуться на главную страницу"/></a></h1>
+{% endblock %}
