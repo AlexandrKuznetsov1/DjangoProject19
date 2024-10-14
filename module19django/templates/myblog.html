@@ -1,0 +1,52 @@
+{% extends "menu.html" %}
+
+{% block pagename %}
+    <h1 style="border: 3px red solid; background-color: lightgreen; padding: 10px; text-align: center; color: navy;">
+        <b> Мой блог </b></h1>
+{% endblock %}
+
+{% block menu %}
+    <li><a href='/platform/'>Главная страница</a></li>
+{% endblock %}
+
+{% block content %}
+    <h3 style="border: 3px green solid; background-color: pink;
+            padding: 10px; text-align: center; color: blue;">
+        <ul>
+            {% for post in page_obj %}
+                <li>
+                    <h2> {{ post.title }} </h2>
+                    <h2> {{ post.content }} </h2>
+                    <h2> {{ post.create_at }} </h2>
+                </li>
+            {% empty %}
+            <p> Нет постов </p>
+            {% endfor %}
+        </ul>
+        <div class="pagination">
+            <p> Страницы: </p>
+            <ul>
+                <li>Вы на {{page_obj.number}} странице блога</li>
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">В начало</a>
+                    <a href="?page={{ page_obj.previous_page_number}}">Предыдущая страница</a>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number}}">Следующая страница</a>
+                <a href="?page={{ paginator.num_pages }}">>>></a>
+                {% endif %}
+            </ul>
+
+        <form method="GET">
+        <select name="paginate_blog" id="">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <input type="submit" value="Выбрать количество записей на странице">
+        </form>
+        <br>
+    </h3>
+{% endblock %}

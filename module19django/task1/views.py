@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.generic import TemplateView
 from django.http import HttpResponse
 from .forms import ContactForm
@@ -11,7 +12,16 @@ class myplatform(TemplateView):
 
 def shop(request):
     Games = Game.objects.all()
-    context = {"Games": Games, }
+    paginate_by = request.GET.get('paginate_by', 1) or 1  # значение 1 установлено для наглядности
+    paginator = Paginator(Games, paginate_by)
+    page_number = request.GET.get('page')
+    try:
+        page_games = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_games = paginator.page(1)
+    except EmptyPage:
+        page_games = paginator.page(paginator.num_pages)
+    context = {"Games": Games, 'page_games': page_games, }
     return render(request, 'my_shop.html', context)
 
 

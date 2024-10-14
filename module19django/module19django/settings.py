@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task1'
+    'django.core.paginator',
+    'task1',
+    'myblog',
 ]
 
 MIDDLEWARE = [

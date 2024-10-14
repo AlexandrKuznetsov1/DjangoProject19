@@ -10,10 +10,40 @@
 {% endblock %}
 
 {% block content %}
-    {% for game in Games %}
+    <h3>Игры для Вас:</h3>
+    {% for game in page_games %}
         <h3> * {{ game | title }} | {{ game.description | title }}. Cтоимость: {{ game.cost | title }}
             <button> Купить </button> </h3>
+    {% empty %}
+        <p>Нет игр</p>
     {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+        <p>Страницы</p>
+        <ul>
+            <li>Вы на {{ page_games.number }} странице магазина</li>
+            {% if page_games.has_previous %}
+                <a href="?page=1">В начало</a>
+            <a href="?page={{ page_games.previous_page_number}}">Предыдущая страница</a>
+            {% endif %}
+
+            {% if page_games.has_next %}
+                <a href="?page={{ page_games.next_page_number}}">Следующая страница</a>
+            <a href="?page={{ paginator.num_pages }}">>>></a>
+            {% endif %}
+        </ul>
+        </span>
+    </div>
+    <form method="GET">
+    <select name="paginate_by" id="">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+    </select>
+    <input type="submit" value="Выбрать количество игр на странице">
+    </form>
+    <br>
     <a href="../"><input type="button" value="Вернуться на главную страницу"/></a>
 {% endblock %}
 
